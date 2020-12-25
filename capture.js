@@ -32,6 +32,7 @@ window.addEventListener('click', function(e) {
             active = false;
             document.removeEventListener('keydown', pressed);
             document.removeEventListener('keyup', pressed);
+            document.documentElement.style.cursor = "auto";
             settings.style.display = "";
             // Auto download, filename="keycapture_timestamp.json"
             save(`keycapture_${Date.now()}.json`, JSON.stringify(keys));
