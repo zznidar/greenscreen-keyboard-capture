@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html style="background-color: #00ff00;cursor:crosshair;overflow: hidden;width: 100vw;height: 100vh;margin: 0;">
+<head>
+    <meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Greenscreen keyboard capture</title>
+    <meta name="description" content="Capture keypresses with their timestamps while displaying a green screen">
+</head> 
+<body> 
+    <div id="settings">
+        <p id="test">Tripple-click anywhere on this webpage to start capturing keyboard.</p>
+        <label for="bckgcolor">Select background colour:</label>
+        <input type="color" id="bckgcolor" name="bckgcolor" value="#00ff00" placeholder="Background colour" onchange="changebackground(this.value)">
+    </div>
+
+
+    <script src="capture.js"></script>
+</body> 
+</html> 
