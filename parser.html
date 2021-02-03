@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html style="/*background-color: #00ff00;cursor:crosshair;overflow: hidden;width: 100vw;height: 100vh;margin: 0;*/">
+<head>
+    <meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Parser | Greenscreen keyboard capture</title>
+    <meta name="description" content="Parse the captured keypresses with their timestamps while displaying a green screen">
+</head> 
+<body style="width: max-content;"> 
+    <!--
+        Input file picker here
+        Onchange: parse()
+
+        Parsing settings here:
+            "Send keys as presses" vs. "Send keydown and keyup events"
+            "Custom text"
+        
+        Output textarea (disabled) here:
+            shows AHK output
+        
+        Also something to match custom text to what has been typed (to synchronise the timings, e.g. sync by the last keypress etc.)
+
+        Also show what has been typed. Use some advanced AI (z. B. when deltatime > 10 seconds or something, treat that as "Bomo šli še enkrat, kar pusti kamere"        
+    -->
+
+    <label for="inputfile">Choose a .json file of your captured keys:</label>
+    <input type="file" id="inputpicker" name="inputfile" accept=".json">
+    
+    <p id="recorded" style="
+    font-family: monospace;
+    margin-bottom: 0;
+    font-kerning: none;
+    font-size: 12px;
+    font-weight: bold;
+    width: max-content;
+">The text from your recording will appear here.</p>
+
+<textarea id="scripted" type="textarea" placeholder="Your new text here" onchange="this.value = this.value.replaceAll('\n', '↵');" style="
+    font-family: monospace;
+    padding: 0;
+    border: 0;
+    font-kerning: none;
+    font-size: 12px;
+    font-weight: bold;
+    width: 100%;
+"></textarea>
+<button onclick="convert();">Convert to .ahk!</button>
+
+<br>
+<textarea readonly id="out">.ahk code will appear here.</textarea>
+
+
+<!-- in textarea, replace all \n with ↵ on change -->
+
+    <script src="parse.js"></script>
+</body> 
+</html> 
