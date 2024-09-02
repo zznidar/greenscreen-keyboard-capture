@@ -3,6 +3,7 @@ settings = document.getElementById("settings");
 recorded = document.getElementById("recorded");
 scripted = document.getElementById("scripted");
 out = document.getElementById("out");
+out.value = "";
 
 inputpicker = document.getElementById("inputpicker");
 inputpicker.onchange = async function(e) {
@@ -42,12 +43,14 @@ function convert() {
 
     for(i = 0; i < Math.min(parsed.length, text.length); i++) {
         output += ("Sleep, " + (parsed[i].timestamp - lastTimestamp) + "\n");
-        output += ("Send, " + text[i].replace(" ", "{Space}").replace("↵", "{Enter}") + "\n");
+        output += ("Send, " + text[i].replace(" ", "{Space}").replace("↵", "{Enter}").replace("!", "{!}") + "\n");
 
         lastTimestamp = parsed[i].timestamp;
     }
 
     out.value = output;
+
+    download("script.ahk", output);
 
 
 }
@@ -101,3 +104,16 @@ save = function(filename, data) {
         document.body.removeChild(elem);
     }
 }
+
+function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:application/ahk;charset=utf-8,' + encodeURIComponent(`\ufeff${text}`));
+    element.setAttribute('download', filename);
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);
+  }

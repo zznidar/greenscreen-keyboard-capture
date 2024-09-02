@@ -6,6 +6,7 @@ function changebackground(colour) {
 }
 
 function pressed(e) {
+    if(e.key == "Backspace") e.preventDefault();
     console.log(e.type, e.key, Date.now());
     keys.push({"type": e.type, "key": e.key, "timestamp": Date.now()});
 }
